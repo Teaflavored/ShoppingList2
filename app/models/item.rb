@@ -11,4 +11,7 @@
 #
 
 class Item < ActiveRecord::Base
+  validates :list, :quantity, :name, presence: true
+
+  belongs_to :list
 end
