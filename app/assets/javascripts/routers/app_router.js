@@ -5,11 +5,15 @@ ShoppingList.Routers.AppRouter = Backbone.Router.extend({
 
   initialize: function(options){
     this.$rootEl = options.$rootEl;
+    //fetching all the lists
+    ShoppingList.lists.fetch();
   },
 
   main: function(){
-    var mainView = new ShoppingList.Views.Main();
-    
+    var mainView = new ShoppingList.Views.Main({
+      collection: ShoppingList.lists
+    });
+
     this._swapView(mainView);
   },
 

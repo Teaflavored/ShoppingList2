@@ -19,6 +19,7 @@
 //= require shopping
 //= require_tree ../templates
 //= require_tree ./models
+//= require_tree ./utils
 //= require_tree ./collections
 //= require_tree ./views
 //= require_tree ./routers
