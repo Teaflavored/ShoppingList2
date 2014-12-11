@@ -15,6 +15,7 @@ class Api::ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    @list_items = @list.items
     render :show
   end
 
