@@ -8,6 +8,11 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
   initialize: function(){
     this.listsSelector = "div.lists";
     this.itemsSelector = "div.items";
+    this.newListSelector = "div.new-list";
+
+    var newListView = new ShoppingList.Views.NewList();
+    this.addSubview(this.newListSelector, newListView);
+
     this.listenTo(this.collection, "add", this.addView);
 
     this.collection.each(function(list){
