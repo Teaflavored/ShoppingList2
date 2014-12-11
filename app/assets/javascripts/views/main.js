@@ -38,7 +38,8 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
     var listId = $(event.currentTarget).data("id");
     var list = this.collection.get(listId);
     var showView = new ShoppingList.Views.ListShow({
-      collection: list.items()
+      collection: list.items(),
+      model: list
     });
 
     this.addSubview(this.itemsSelector, showView);

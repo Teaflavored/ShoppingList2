@@ -3,7 +3,13 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
 
   initialize: function(){
     this.itemSelector = "div.all-items";
+    this.newItemSelector = "div.new-item";
     this.listenTo(this.collection, "add", this.addView);
+
+    var newItemView = new ShoppingList.Views.NewItem({
+      list: this.model
+    });
+    this.addSubview(this.newItemSelector, newItemView);
 
     this.collection.each(function(item){
       this.addView(item);
@@ -22,7 +28,7 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
     var renderedContent = this.template();
 
     this.$el.html(renderedContent);
-
+    this.attachSubviews();
     return this;
   }
 })
