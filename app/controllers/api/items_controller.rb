@@ -1,9 +1,16 @@
 class Api::ItemsController < ApplicationController
   def index
-
+    @items = Item.all
+    render :index
   end
 
   def create
+    @item = Item.new(item_params)
+    if @item.save
+      render :show
+    else
+      render json: @item.errors.full_messages, status: 422
+    end
   end
 
   private
