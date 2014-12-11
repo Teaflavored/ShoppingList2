@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require underscore
 //= require backbone
+//= require typeahead
 //= require shopping
 //= require_tree ../templates
 //= require_tree ./models

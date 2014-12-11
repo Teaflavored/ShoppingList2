@@ -34,7 +34,6 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
   createItem: function(event){
     event.preventDefault();
     var $input = this.$("input.item-name");
-    debugger
     this.model = new ShoppingList.Models.Item();
     this.model.set(this._itemParams);
     this.model.save({},{
@@ -46,12 +45,44 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
 
   },
 
+  matcher: function(strs){
+    return function findMatches(q, cb) {
+      var matches, substrRegex;
+      matches = [];
+      substrRegex = new RegExp(q, 'i');
+      $.each(strs, function(i, str) {
+        if (substrRegex.test(str)) {
+          matches.push({ value: str });
+        }
+      });
+      cb(matches);
+    };
+
+  },
+
+  attachTypeahead: function(){
+    var items = [""];
+
+    this.$("input.item-name").typeahead({
+      highLight: true,
+      minLength: 1
+    }, {
+      name: "items",
+      displayKey: "value",
+      source: this.matcher(items)
+    })
+  },
+
   render: function(){
     var renderedContent = this.template({
       list: this.model
     });
 
     this.$el.html(renderedContent);
+
+    setTimeout(function(){
+      this.attachTypeahead();
+    }.bind(this), 0)
     return this;
   }
 })

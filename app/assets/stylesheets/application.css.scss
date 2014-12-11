@@ -16,3 +16,25 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+div#main{
+  position:relative;
+}
+
+div#lists{
+  display:inline-block;
+  position:absolute;
+  width:300px;
+  top:0;
+  bottom:0;
+  left:0;
+}
+
+div.all-items-container{
+  position:absolute;
+  left:300px;
+}
+
+div.items-wrapper{
+  position:relative;
+}
