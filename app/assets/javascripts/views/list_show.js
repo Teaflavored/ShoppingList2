@@ -67,7 +67,7 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
   },
 
   addItemToListParams: function(item){
-    this._listOfItems[item.get("name")] = item.get("quantity");
+    this._listOfItems[item.get("name")] = this._listOfItems[item.get("name")] ? this._listOfItems[item.get("name")] + parseInt(item.get("quantity")) : item.get("quantity");
     console.log(this._listOfItems);
   },
 
