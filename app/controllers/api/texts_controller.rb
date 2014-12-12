@@ -11,7 +11,7 @@ class Api::TextsController < ApplicationController
 
     @client.account.messages.create({
       :from => '+16503895971',
-      to: params[:phone],
+      to: "+1" + params[:phone],
       body: message,
     })
 
@@ -23,9 +23,11 @@ class Api::TextsController < ApplicationController
   private
 
   def parseMessage(items)
-    string = ""
+    string = "Please buy: \n"
     items.each do |item, quant|
-      string += "#{quant}x item, "
+      string += "#{quant}x #{item}, "
     end
+
+    string;
   end
 end

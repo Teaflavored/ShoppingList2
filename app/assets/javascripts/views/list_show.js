@@ -2,7 +2,7 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
   template: JST["list_show"],
 
   events: {
-    "keydown input.phone-number": "updatePhoneNumber",
+    "keyup input.phone-number": "updatePhoneNumber",
     "click button.send-text": "sendText"
   },
 
