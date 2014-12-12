@@ -67,16 +67,46 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
   },
 
   attachTypeahead: function(){
-    var items = [""];
+    var items = new Bloodhound({
+      datumTokenizer: function (datum) {
+        return Bloodhound.tokenizers.whitespace(datum.value);
+      },
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      remote: {
+        url: 'http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY=8e1280d3ae&ItemName=%QUERY',
+
+        ajax: {
+          dataType: "jsonp",
+          success: function(data){
+            debugger;
+          }
+        },
+
+        filter: function (movies) {
+          // Map the remote source JSON array to a JavaScript object array
+          debugger
+          return $.map(movies.results, function (movie) {
+            return {
+              value: movie.original_title
+            };
+          });
+        }
+      }
+    });
+
+    items.initialize();
 
     this.$("input.item-name").typeahead({
       highLight: true,
       minLength: 1
     }, {
-      name: "items",
       displayKey: "value",
-      source: this.matcher(items)
+      source: items.ttAdapter()
     })
+
+    this.$("input.item-name").on("typeahead:selected", function(event, data){
+      this._itemParams["item"].name = data.value;
+    }.bind(this))
   },
 
   render: function(){
