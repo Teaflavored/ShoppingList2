@@ -40,6 +40,7 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
       success: function(){
         this.list.items().add(this.model);
         $input.val("");
+        this.$("input.item-quant").val("");
       }.bind(this)
     });
 
@@ -82,6 +83,7 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
 
     setTimeout(function(){
       this.attachTypeahead();
+      this.$("input.item-quant").val(1);
     }.bind(this), 0)
     return this;
   }
