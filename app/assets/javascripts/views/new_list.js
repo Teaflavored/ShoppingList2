@@ -13,9 +13,10 @@ ShoppingList.Views.NewList = Backbone.CompositeView.extend({
   updateListParams: function(event){
     if (event.keyCode === 13){
       this.createList(event);
+    } else {
+      var text = $(event.currentTarget).val();
+      this._listParams["list"].title = text;
     }
-    var text = $(event.currentTarget).val();
-    this._listParams["list"].title = text;
   },
 
   createList: function(event){

@@ -12,7 +12,8 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
     this.listenTo(this.list, "sync", this.updateListId);
     this._itemParams = {
       "item": {
-        "list_id": this.list.id
+        "list_id": this.list.id,
+        "quantity": 1,
       }
     }
   },
@@ -22,8 +23,12 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
   },
 
   updateItemName: function(event){
-    var text = $(event.currentTarget).val();
-    this._itemParams["item"].name = text;
+    if (event.keyCode === 13){
+      this.createItem(event);
+    } else {
+      var text = $(event.currentTarget).val();
+      this._itemParams["item"].name = text;
+    }
   },
 
   updateItemQuant: function(event){
@@ -40,7 +45,7 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
       success: function(){
         this.list.items().add(this.model);
         $input.val("");
-        this.$("input.item-quant").val("");
+        this.$("input.item-quant").val("1");
       }.bind(this)
     });
 

@@ -46,8 +46,12 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
   },
 
   updatePhoneNumber: function(event){
-    var number = $(event.currentTarget).val() === "" ? 0 :parseInt($(event.currentTarget).val());
-    this.toSendPhoneNumber = number;
+    if (event.keyCode === 13){
+      this.sendText(event);
+    } else {
+      var number = $(event.currentTarget).val() === "" ? 0 :parseInt($(event.currentTarget).val());
+      this.toSendPhoneNumber = number;
+    }
   },
 
   listSyncActions: function(){
