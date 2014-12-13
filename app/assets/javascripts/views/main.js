@@ -87,13 +87,18 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
 
     var listId = newList.id;
     var list = this.collection.get(listId);
-    var showView = new ShoppingList.Views.ListShow({
-      collection: list.items(),
-      model: list
-    });
-    list.fetch();
+    if (list){
+      var showView = new ShoppingList.Views.ListShow({
+        collection: list.items(),
+        model: list
+      });
+      list.fetch();
 
-    this.addSubview(this.itemsSelector, showView);
+      this.addSubview(this.itemsSelector, showView);
+    } else {
+      return;
+    }
+
   },
 
   render: function(){

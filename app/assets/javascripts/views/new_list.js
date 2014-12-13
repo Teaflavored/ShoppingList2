@@ -32,7 +32,12 @@ ShoppingList.Views.NewList = Backbone.CompositeView.extend({
         this.clearInternalParams();
         ShoppingList.lists.add(this.model);
         //trigger and show the new list
-        ShoppingList.lists.trigger("newlistevent", this.model);
+
+        //see if we want to add it to the filteredLists
+        var filterText = $("input.lists-search").val();
+        ShoppingList.filteredLists.setList(ShoppingList.lists, filterText);
+
+        ShoppingList.filteredLists.trigger("newlistevent", this.model);
         $input.val("");
       }.bind(this),
 
