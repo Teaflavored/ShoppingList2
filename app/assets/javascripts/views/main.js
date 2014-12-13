@@ -3,13 +3,17 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
 
   events: {
     "click .list-item": "showItems",
-    "mouseover #mini-sidebar-menu #plus-open": "openSidebar"
+    "click #mini-sidebar-menu #plus-open": "openSidebar"
   },
 
   initialize: function(){
     this.listsSelector = "div#sidebar div.lists";
     this.itemsSelector = "div.items";
     this.newListSelector = "div#sidebar div.new-list";
+    this.listsHeaderSelector = "div#sidebar div.lists-header";
+
+    var listsHeaderView = new ShoppingList.Views.ListsHeader();
+    this.addSubview(this.listsHeaderSelector, listsHeaderView);
 
     var newListView = new ShoppingList.Views.NewList();
     this.addSubview(this.newListSelector, newListView);
@@ -34,7 +38,6 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
   },
 
   removeView: function(list){
-    debugger
     var viewsToDelete = [];
     _.each(this.subviews(this.listsSelector), function(view){
       if (!view.model || view.model.id === list.id){
@@ -48,6 +51,7 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
 
   openSidebar: function(){
     var $miniSideBar = this.$("#mini-sidebar-menu");
+
     $.sidr("open", "sidebar", function(){
       $("div#sidebar").on("mouseleave", function(){
         $.sidr("close", "sidebar", function(){
@@ -101,13 +105,14 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
     this.attachSubviews();
 
     setTimeout(function(){
-      this.$("#mini-sidebar-menu").sidr({
+      this.$("#mini-sidebar-menu-hidden").sidr({
         name: "sidebar",
         side: "left",
       })
       this.$el.append($("#sidebar"));
+      this.$("#sidebar").append("<div class=\"lists-header\"></div>");
       this.$("#sidebar").append("<h1>All Lists</h1><div class=\"lists\"></div>");
-      this.$("#sidebar").append("<div class=\"new-list\"></div>")
+      this.$("#sidebar").append("<div class=\"new-list\"></div>");
       this.attachSubviews();
     }.bind(this), 0)
     return this;
