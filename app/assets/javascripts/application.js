@@ -17,6 +17,7 @@
 //= require underscore
 //= require backbone
 //= require typeahead
+//= require jquery.sidr
 //= require shopping
 //= require_tree ../templates
 //= require_tree ./models

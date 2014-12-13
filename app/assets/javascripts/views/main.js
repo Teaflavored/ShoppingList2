@@ -2,7 +2,8 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
   template: JST["main"],
 
   events: {
-    "click .list-item": "showItems"
+    "click .list-item": "showItems",
+    "mouseenter #mini-sidebar-menu": "openSidebar"
   },
 
   initialize: function(){
@@ -41,6 +42,20 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
     }.bind(this));
   },
 
+  openSidebar: function(){
+    var $miniSideBar = this.$("#mini-sidebar-menu");
+    $.sidr("open", "sidebar", function(){
+      $("div#sidebar").on("mouseout", function(){
+        $.sidr("close", "sidebar", function(){
+          $miniSideBar.css({"width": "70px", "display": "block"});
+        });
+      })
+
+    });
+    this.$("#mini-sidebar-menu").css({"width": "0px", "display":"none"});
+
+  },
+
   showItems: function(event){
     event.preventDefault();
     //clear old subviews
@@ -66,6 +81,13 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
 
     this.$el.html(renderedContent);
     this.attachSubviews();
+
+    setTimeout(function(){
+      this.$("#mini-sidebar-menu").sidr({
+        name: "sidebar",
+        side: "left"
+      })
+    }.bind(this), 0)
     return this;
   }
 })
