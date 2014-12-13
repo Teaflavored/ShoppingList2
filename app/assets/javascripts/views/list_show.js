@@ -86,7 +86,9 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
   },
 
   render: function(){
-    var renderedContent = this.template();
+    var renderedContent = this.template({
+      list: this.model
+    });
 
     this.$el.html(renderedContent);
     this.attachSubviews();

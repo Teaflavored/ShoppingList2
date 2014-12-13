@@ -27,9 +27,12 @@ ShoppingList.Views.NewList = Backbone.CompositeView.extend({
     this.disableInputFields();
     this.model.save({},{
       success: function(){
+
         this.enableInputFields();
         this.clearInternalParams();
         ShoppingList.lists.add(this.model);
+        //trigger and show the new list
+        ShoppingList.lists.trigger("newlistevent", this.model);
         $input.val("");
       }.bind(this),
 

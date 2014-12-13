@@ -17,6 +17,9 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
     this.listenTo(this.collection, "add", this.addView);
     this.listenTo(this.collection, "remove", this.removeView);
 
+    //custom listen event on new list addition
+    this.listenTo(this.collection, "newlistevent", this.showNewList)
+
     this.collection.each(function(list){
       this.addView(list);
     }.bind(this));
@@ -63,8 +66,22 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
     this._subviews[this.itemsSelector] = [];
     this.$(this.itemsSelector).empty();
 
-
     var listId = $(event.currentTarget).data("id");
+    var list = this.collection.get(listId);
+    var showView = new ShoppingList.Views.ListShow({
+      collection: list.items(),
+      model: list
+    });
+    list.fetch();
+
+    this.addSubview(this.itemsSelector, showView);
+  },
+
+  showNewList: function(newList){
+    this._subviews[this.itemsSelector] = [];
+    this.$(this.itemsSelector).empty();
+
+    var listId = newList.id;
     var list = this.collection.get(listId);
     var showView = new ShoppingList.Views.ListShow({
       collection: list.items(),
@@ -89,7 +106,7 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
         side: "left",
       })
       this.$el.append($("#sidebar"));
-      this.$("#sidebar").append("<div class=\"lists\"></div>");
+      this.$("#sidebar").append("<h1>All Lists</h1><div class=\"lists\"></div>");
       this.$("#sidebar").append("<div class=\"new-list\"></div>")
       this.attachSubviews();
     }.bind(this), 0)
