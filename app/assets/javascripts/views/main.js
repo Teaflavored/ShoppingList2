@@ -30,11 +30,14 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
   },
 
   removeView: function(list){
-    debugger
+    var viewsToDelete = [];
     _.each(this.subviews(this.listsSelector), function(view){
       if (view.model.id === list.id){
-        this.removeSubview(this.listsSelector, view);
+        viewsToDelete.push(view);
       }
+    }.bind(this));
+    _.each(viewsToDelete, function(view){
+      this.removeSubview(this.newListSelector, view);
     }.bind(this));
   },
 

@@ -41,17 +41,25 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
     var $input = this.$("input.item-name");
     this.model = this.list.items().findWhere({ name: this._itemParams["item"].name.toLowerCase()});
     if (this.model){
+
       var oldQuant = this.model.get("quantity")
       this.model.set({
-        quantity: Math.floor(parseInt(this._itemParams["item"].quantity) + parseInt(oldQuant))
+        "item": {
+          quantity: Math.floor(parseInt(this._itemParams["item"].quantity) + parseInt(oldQuant))
+        }
       })
     } else {
+
       this.model = new ShoppingList.Models.Item();
       this.model.set(this._itemParams);
     }
+    
     this.model.save({},{
       success: function(){
-        this.list.items().add(this.model);
+
+        if (!this.list.items().get(this.model.id)){
+          this.list.items().add(this.model);
+        }
         $input.val("");
         this.$("input.item-quant").val("1");
       }.bind(this)
@@ -87,13 +95,13 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
         ajax: {
           dataType: "jsonp",
           success: function(data){
-            debugger;
+            ;
           }
         },
 
         filter: function (movies) {
           // Map the remote source JSON array to a JavaScript object array
-          debugger
+
           return $.map(movies.results, function (movie) {
             return {
               value: movie.original_title

@@ -43,7 +43,6 @@ ShoppingList.Views.NewList = Backbone.CompositeView.extend({
   },
 
   clearInternalParams: function(){
-    debugger
     this._listParams["list"].title = "";
   },
 
