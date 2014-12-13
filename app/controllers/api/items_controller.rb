@@ -13,6 +13,14 @@ class Api::ItemsController < ApplicationController
     end
   end
 
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      render :show
+    else
+      render json: @item.errors.full_messages, status: 422
+    end
+  end
   private
 
   def item_params

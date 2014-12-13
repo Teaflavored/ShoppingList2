@@ -12,6 +12,13 @@
 
 class Item < ActiveRecord::Base
   validates :list, :quantity, :name, presence: true
+  before_save :ensure_lower_case_name
 
   belongs_to :list
+
+  private
+
+  def ensure_lower_case_name
+    self.name = self.name.downcase
+  end
 end

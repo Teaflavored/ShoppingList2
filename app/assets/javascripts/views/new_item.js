@@ -39,8 +39,16 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
   createItem: function(event){
     event.preventDefault();
     var $input = this.$("input.item-name");
-    this.model = new ShoppingList.Models.Item();
-    this.model.set(this._itemParams);
+    this.model = this.list.items().findWhere({ name: this._itemParams["item"].name.toLowerCase()});
+    if (this.model){
+      var oldQuant = this.model.get("quantity")
+      this.model.set({
+        quantity: Math.floor(parseInt(this._itemParams["item"].quantity) + parseInt(oldQuant))
+      })
+    } else {
+      this.model = new ShoppingList.Models.Item();
+      this.model.set(this._itemParams);
+    }
     this.model.save({},{
       success: function(){
         this.list.items().add(this.model);
@@ -67,6 +75,7 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
   },
 
   attachTypeahead: function(){
+    //need to work on typeahead
     var items = new Bloodhound({
       datumTokenizer: function (datum) {
         return Bloodhound.tokenizers.whitespace(datum.value);
@@ -96,17 +105,17 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
 
     items.initialize();
 
-    this.$("input.item-name").typeahead({
-      highLight: true,
-      minLength: 1
-    }, {
-      displayKey: "value",
-      source: items.ttAdapter()
-    })
-
-    this.$("input.item-name").on("typeahead:selected", function(event, data){
-      this._itemParams["item"].name = data.value;
-    }.bind(this))
+    // this.$("input.item-name").typeahead({
+    //   highLight: true,
+    //   minLength: 1
+    // }, {
+    //   displayKey: "value",
+    //   source: items.ttAdapter()
+    // })
+    //
+    // this.$("input.item-name").on("typeahead:selected", function(event, data){
+    //   this._itemParams["item"].name = data.value;
+    // }.bind(this))
   },
 
   render: function(){
