@@ -37,8 +37,16 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
   },
 
   createItem: function(event){
+    //check if there's valid input
     event.preventDefault();
     var $input = this.$("input.item-name");
+
+    if (!this._itemParams["item"].name || this._itemParams["item"].name.length === 0){
+      //give error
+      $input.attr("placeholder", "Can't be blank.")
+      $input.css("border","1px red solid");
+    }
+
     this.model = this.list.items().findWhere({ name: this._itemParams["item"].name.toLowerCase()});
     if (this.model){
 
@@ -53,7 +61,7 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
       this.model = new ShoppingList.Models.Item();
       this.model.set(this._itemParams);
     }
-    
+
     this.model.save({},{
       success: function(){
 
@@ -61,6 +69,7 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
           this.list.items().add(this.model);
         }
         $input.val("");
+        this._itemParams["item"].name = null;
         this.$("input.item-quant").val("1");
       }.bind(this)
     });
