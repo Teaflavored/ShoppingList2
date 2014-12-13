@@ -7,9 +7,9 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
   },
 
   initialize: function(){
-    this.listsSelector = "div#sidebar";
+    this.listsSelector = "div#sidebar div.lists";
     this.itemsSelector = "div.items";
-    this.newListSelector = "div#sidebar";
+    this.newListSelector = "div#sidebar div.new-list";
 
     var newListView = new ShoppingList.Views.NewList();
     this.addSubview(this.newListSelector, newListView);
@@ -31,9 +31,10 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
   },
 
   removeView: function(list){
+    debugger
     var viewsToDelete = [];
     _.each(this.subviews(this.listsSelector), function(view){
-      if (view.model.id === list.id){
+      if (!view.model || view.model.id === list.id){
         viewsToDelete.push(view);
       }
     }.bind(this));
@@ -88,6 +89,8 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
         side: "left",
       })
       this.$el.append($("#sidebar"));
+      this.$("#sidebar").append("<div class=\"lists\"></div>");
+      this.$("#sidebar").append("<div class=\"new-list\"></div>")
       this.attachSubviews();
     }.bind(this), 0)
     return this;
