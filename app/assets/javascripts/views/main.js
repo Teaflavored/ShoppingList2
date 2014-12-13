@@ -14,6 +14,7 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
     this.addSubview(this.newListSelector, newListView);
 
     this.listenTo(this.collection, "add", this.addView);
+    this.listenTo(this.collection, "remove", this.removeView);
 
     this.collection.each(function(list){
       this.addView(list);
@@ -26,6 +27,15 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
     });
 
     this.addSubview(this.listsSelector, listItemView);
+  },
+
+  removeView: function(list){
+    debugger
+    _.each(this.subviews(this.listsSelector), function(view){
+      if (view.model.id === list.id){
+        this.removeSubview(this.listsSelector, view);
+      }
+    }.bind(this));
   },
 
   showItems: function(event){

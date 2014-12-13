@@ -1,6 +1,6 @@
 class Api::ListsController < ApplicationController
   def index
-    @lists = List.all.includes(:items)
+    @lists = List.all_not_sent.includes(:items)
     render :index
   end
 
@@ -13,6 +13,15 @@ class Api::ListsController < ApplicationController
     end
   end
 
+  def update
+    @list = List.find(params[:id])
+    if @list.update(list_params)
+      render :show
+    else
+      render json: @list.errors.full_messsages, status: 422
+    end
+  end
+
   def show
     @list = List.find(params[:id])
     @list_items = @list.items
@@ -22,6 +31,6 @@ class Api::ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:title)
+    params.require(:list).permit(:title, :sent)
   end
 end

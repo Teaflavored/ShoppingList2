@@ -41,7 +41,17 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
       url: "/api/texts",
       type: "POST",
       dataType: "json",
-      data: data
+      data: data,
+      success: function(){
+        this.model.set({
+          "sent": true,
+        });
+        this.model.save({},{
+          success: function(){
+            ShoppingList.lists.remove(this.model);
+          }.bind(this)
+        })
+      }.bind(this)
     })
   },
 
@@ -68,7 +78,6 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
 
   addItemToListParams: function(item){
     this._listOfItems[item.get("name")] = this._listOfItems[item.get("name")] ? this._listOfItems[item.get("name")] + parseInt(item.get("quantity")) : item.get("quantity");
-    console.log(this._listOfItems);
   },
 
 
