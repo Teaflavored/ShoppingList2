@@ -10,7 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require jquery.sidr.dark
+ *= require jquery.sidr.light
  *= require_self
  */
 
@@ -84,5 +84,25 @@ div.mini-sidebar-block img{
 }
 
 div.list-item{
+  padding-left:8px;
   cursor:pointer;
+}
+
+input.lists-search.form-control{
+  height:100%;
+  font-size:23px;
+  margin-bottom:0px;
+}
+
+h1.sidebar-header{
+  font-size:33px;
+}
+
+div#sidebar{
+  overflow-y:hidden;
+}
+
+ul.lists{
+  height:40%;
+  overflow-y:scroll;
 }
