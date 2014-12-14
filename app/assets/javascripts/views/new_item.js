@@ -40,14 +40,20 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
     //check if there's valid input
     event.preventDefault();
     var $input = this.$("input.item-name");
+    var $button = this.$("button.create-item");
 
     if (!this._itemParams["item"].name || this._itemParams["item"].name.length === 0){
       //give error
       $input.attr("placeholder", "Can't be blank.")
       $input.css("border","1px red solid");
+      return;
     }
+    //add spinner and disable
+    $button.html("<div class=\"loading \"><div class=\"icon\">✓</div><div class=\"circle spin-cw\"></div></div>");
+    //disable button and fields
+    this.disabledFields();
 
-    this.model = this.list.items().findWhere({ name: this._itemParams["item"].name.toLowerCase()});
+    this.model = this.list.items().findWhere({ name: this._itemParams["item"].name.toLowerCase() });
     if (this.model){
 
       var oldQuant = this.model.get("quantity")
@@ -64,12 +70,14 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
 
     this.model.save({},{
       success: function(){
-
+        this.reEnableFields();
+        $button.html("Add");
         if (!this.list.items().get(this.model.id)){
           this.list.items().add(this.model);
         }
         $input.val("");
         this._itemParams["item"].name = null;
+        this._itemParams["item"].quantity = 1;
         this.$("input.item-quant").val("1");
       }.bind(this)
     });
@@ -133,6 +141,22 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
     // this.$("input.item-name").on("typeahead:selected", function(event, data){
     //   this._itemParams["item"].name = data.value;
     // }.bind(this))
+  },
+
+  disabledFields: function(){
+    var $input = this.$("input.item-name");
+    var $button = this.$("button.create-item");
+
+    $input.attr("disabled", "disabled");
+    $button.attr("disabled", "disabled");
+  },
+
+  reEnableFields: function(){
+    var $input = this.$("input.item-name");
+    var $button = this.$("button.create-item");
+
+    $input.removeAttr("disabled", "disabled");
+    $button.removeAttr("disabled", "disabled");
   },
 
   render: function(){

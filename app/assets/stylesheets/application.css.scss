@@ -10,9 +10,9 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require jquery.sidr.dark
  *= require_self
+ *= require spinner
  */
 
  @import "bootstrap-sprockets";
@@ -24,8 +24,6 @@ div#main{
   position:relative;
   height:100%;
 }
-
-
 
 div.all-items-container{
   background:#16a085;
