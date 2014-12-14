@@ -49,7 +49,7 @@ ShoppingList.Views.NewItem = Backbone.CompositeView.extend({
       return;
     }
     //add spinner and disable
-    $button.html("<div class=\"loading \"><div class=\"icon\">✓</div><div class=\"circle spin-cw\"></div></div>");
+    $button.html("<i class=\"fa fa-spinner fa-spin\"></i>");
     //disable button and fields
     this.disabledFields();
 
