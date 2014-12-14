@@ -36,7 +36,12 @@ div#lists{
 
 div.all-items-container{
   position:absolute;
-  left:300px;
+  left:70px;
+  top:0;
+  bottom:0;
+  right:0;
+  margin-left:0;
+  padding-left:0;
 }
 
 div.items-wrapper{
@@ -50,8 +55,10 @@ div#mini-sidebar-menu{
   bottom:0;
   width:70px;
   background:#333;
-  transition: width 0.2s ease;
+  transition: all 0.5s ease;
 }
+
+
 
 div#mini-sidebar-menu div.mini-sidebar-wrapper{
   position:relative;

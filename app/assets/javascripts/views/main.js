@@ -53,14 +53,17 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
     var $miniSideBar = this.$("#mini-sidebar-menu");
 
     $.sidr("open", "sidebar", function(){
-      $("div#sidebar").on("mouseleave", function(){
-        $.sidr("close", "sidebar", function(){
-          $miniSideBar.css({"width": "70px", "display": "block"});
-        });
-      })
-
+      // $("div.container.all-items-container").on("click", function(){
+      //   $.sidr("close", "sidebar", function(){
+      //   }.bind(this));
+      //   $miniSideBar.css({"display": "block"});
+      //   setTimeout(function(){ $miniSideBar.css({"width": "70px"}); }, 0 )
+      //
+      //   this.$("div.all-items-container").css({"left": "70px"})
+      // }.bind(this));
     });
     this.$("#mini-sidebar-menu").css({"width": "0px", "display":"none"});
+    this.$("div.all-items-container").css({"left": "0"})
 
   },
 
@@ -116,7 +119,7 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
       })
       this.$el.append($("#sidebar"));
       this.$("#sidebar").append("<div class=\"lists-header\"></div>");
-      this.$("#sidebar").append("<h1>All Lists</h1><div class=\"lists\"></div>");
+      this.$("#sidebar").append("<div class=\"lists\"></div>");
       this.$("#sidebar").append("<div class=\"new-list\"></div>");
       this.attachSubviews();
     }.bind(this), 0)
