@@ -34,7 +34,23 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
       model: list
     });
 
-    this.addSubview(this.listsSelector, listItemView);
+    this.addSubviewPre(this.listsSelector, listItemView);
+  },
+
+  addSubviewPre: function (selector, subview) {
+    this.subviews(selector).push(subview);
+    // Try to attach the subview. Render it as a convenience.
+    this.attachSubviewPre(selector, subview.render());
+  },
+
+  attachSubviewPre: function (selector, subview) {
+    this.$(selector).prepend(subview.$el);
+    subview.delegateEvents();
+
+    if (subview.attachSubviews) {
+      subview.attachSubviews();
+    }
+
   },
 
   removeView: function(list){

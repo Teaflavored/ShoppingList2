@@ -1,5 +1,5 @@
 json.array!(@lists) do |list|
-  json.extract!(list, :id, :title, :sent)
+  json.extract!(list, :id, :title, :sent, :created_at)
 
   json.items do
     json.array!(list.items) do |item|

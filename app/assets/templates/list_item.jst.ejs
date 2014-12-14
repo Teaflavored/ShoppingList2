@@ -1,3 +1,5 @@
 <div class="list-item" data-id="<%= list.id %>">
-  <%= list.get("title") %>
+  <%= list.get("title") %>,
+  <% var date = moment(new Date(list.get("created_at"))) %>
+  <%= date.fromNow() %>
 </div>

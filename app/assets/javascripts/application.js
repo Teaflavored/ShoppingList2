@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery
 //= require bootstrap-sprockets
+//= require moment
 //= require underscore
 //= require backbone
 //= require typeahead

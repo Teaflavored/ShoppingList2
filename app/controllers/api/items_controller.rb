@@ -5,7 +5,6 @@ class Api::ItemsController < ApplicationController
   end
 
   def create
-    sleep 2
     @item = Item.new(item_params)
     if @item.save
       render :show
@@ -15,7 +14,6 @@ class Api::ItemsController < ApplicationController
   end
 
   def update
-    sleep 2
     @item = Item.find(params[:id])
     if @item.update(item_params)
       render :show
