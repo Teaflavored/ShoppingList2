@@ -85,7 +85,24 @@ div.mini-sidebar-block img{
 
 div.list-item{
   padding-left:8px;
+  position:relative;
   cursor:pointer;
+  height:40px;
+  width:100%;
+}
+
+div.list-item:hover{
+  background:#ABB7B7;
+}
+
+div.list-item span.list-title{
+  position:absolute;
+  left:0;
+}
+
+div.list-item span.date-from-now{
+  position:absolute;
+  right:0;
 }
 
 input.lists-search.form-control{
