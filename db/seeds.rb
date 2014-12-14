@@ -17,5 +17,5 @@ Item.transaction do
   l1.items.create(name: "Apples", quantity: 2)
   l1.items.create(name: "Chips", quantity: 3)
 
-  l2.items.create(name: "drinks", quantity: 5)s
+  l2.items.create(name: "drinks", quantity: 5)
 end

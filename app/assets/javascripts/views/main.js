@@ -7,7 +7,7 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
   },
 
   initialize: function(){
-    this.listsSelector = "div#sidebar div.lists";
+    this.listsSelector = "div#sidebar ul.lists";
     this.itemsSelector = "div.items";
     this.newListSelector = "div#sidebar div.new-list";
     this.listsHeaderSelector = "div#sidebar div.lists-header";
@@ -119,7 +119,7 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
       })
       this.$el.append($("#sidebar"));
       this.$("#sidebar").append("<div class=\"lists-header\"></div>");
-      this.$("#sidebar").append("<div class=\"lists\"></div>");
+      this.$("#sidebar").append("<ul class=\"lists\"></ul>");
       this.$("#sidebar").append("<div class=\"new-list\"></div>");
       this.attachSubviews();
     }.bind(this), 0)
