@@ -8,11 +8,7 @@ ShoppingList.Views.ListsHeader = Backbone.CompositeView.extend({
   filterLists: function(event){
     var $input = $(event.currentTarget);
     var text = $input.val();
-    if (text === ""){
-      ShoppingList.filteredLists.set(ShoppingList.lists.models);
-    } else {
-      ShoppingList.filteredLists.setList(ShoppingList.lists, text);
-    }
+    ShoppingList.filteredLists.setList(ShoppingList.lists, text);
   },
 
   render: function(){

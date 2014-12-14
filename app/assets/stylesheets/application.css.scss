@@ -97,10 +97,17 @@ div.list-item:hover{
 
 div.list-item span.list-title{
   position:absolute;
+  width:60%;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
   left:0;
 }
 
 div.list-item span.date-from-now{
+  font-size:0.7em;
+  padding-left:0px;
+  padding-right:4px;
   position:absolute;
   right:0;
 }
@@ -113,6 +120,7 @@ input.lists-search.form-control{
 
 h1.sidebar-header{
   font-size:33px;
+  margin:0;
 }
 
 div#sidebar{

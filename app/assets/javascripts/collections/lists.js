@@ -7,6 +7,15 @@ ShoppingList.Collections.Lists = Backbone.Collection.extend({
   },
 
   setList: function(lists, text){
+    lists.sort();
+    var model;
+    var modelIds = this.pluck("id");
+    _.each(modelIds, function(modelId){
+      if (model = this.get(modelId)){
+        this.remove(model);
+      }
+    }.bind(this));
+
     var filteredLists = lists.filter(function(list){
       if (list.get("title").match(text.toLowerCase())){
         return true;
