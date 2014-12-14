@@ -33,22 +33,33 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
     this.addSubview(this.itemSelector, itemView);
   },
 
-  sendText: function(){
+  sendText: function(event){
+    var $button = $(event.currentTarget);
+    var checkString = "<i class=\"fa fa-check\"></i><span>Sent</span>";
+    var spinnerString = "<i class=\"fa fa-spinner fa-spin\"></i>";
+    $button.html(spinnerString);
     var data = {};
     data["phone"] = this.toSendPhoneNumber;
     data["items"] = this._listOfItems;
+
     $.ajax({
       url: "/api/texts",
       type: "POST",
       dataType: "json",
       data: data,
       success: function(){
+        $button.html(checkString);
+        this.$("button.send-text").addClass("dont-enable");
+        this.$("button.send-text").attr("disabled", "disabled");
         this.model.set({
           "sent": true,
         });
         this.model.save({},{
           success: function(){
             ShoppingList.lists.remove(this.model);
+
+            var filterText = $("input.lists-search").val();
+            ShoppingList.filteredLists.setList(ShoppingList.lists, filterText);
           }.bind(this)
         })
       }.bind(this)
@@ -82,6 +93,10 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
 
 
   activateSendText: function(){
+    debugger
+    if (this.$("button.send-text").hasClass("dont-enable")){
+      return;
+    }
     this.$("button.send-text").removeAttr("disabled", "disabled");
   },
 
