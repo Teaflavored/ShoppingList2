@@ -20,7 +20,7 @@
 
 html, body{
   font-family: 'Raleway', sans-serif;
-  background:#3697de;
+  background:#32425c;
   height:100%;
 }
 div#main{
@@ -136,18 +136,31 @@ h1.sidebar-header{
 
 div#sidebar{
   overflow-y:hidden;
+  background:#333;
 }
 
 ul.lists{
   margin-bottom:5px;
-  height:400px;
-  overflow:auto;
+  min-height:300px;
+  max-height:400px;
+  overflow-y: scroll;
 }
+div#sidebar{
+  color:black;
+  font-family:"Source Sans Pro", Calibri, Candara, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
 div#sidebar.sidr.left ul.lists li div.list-item span{
   color:#fff;
 }
 
+div#sidebar.sidr.left ul.lists li div.list-item span:first-child{
+  font-size:1.2em;
+}
+
 input.lists-search.form-control{
+  left:26px;
   margin-top:20px;
   margin-bottom:20px;
   width:80%;

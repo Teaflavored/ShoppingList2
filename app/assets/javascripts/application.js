@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require moment
 //= require jquery.mCustomScrollbar
+//= require jquery.tinyscrollbar
 //= require underscore
 //= require backbone
 //= require typeahead
