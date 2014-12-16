@@ -21,6 +21,9 @@ ShoppingList.Views.NewList = Backbone.CompositeView.extend({
 
   createList: function(event){
     event.preventDefault();
+    //make an input appear
+
+
     var $input = this.$("input.list-title");
     this.model = new ShoppingList.Models.List();
     this.model.set(this._listParams);

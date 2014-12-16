@@ -21,7 +21,8 @@
 html, body{
   font-family: 'Raleway', sans-serif;
   background:#32425c;
-  overflow-y:scroll;
+  overflow:auto;
+  overflow-x:hidden;
   height:100%;
 }
 div#main{
@@ -177,8 +178,9 @@ div.new-list{
 }
 
 button.create-list.btn{
-  margin-top:40px;
+  margin-top:13px;
   width:70px;
+  position:relative;
   height:70px;
   border-radius:50%;
   display:inline;
@@ -190,10 +192,11 @@ button.create-list.btn:focus{
 
 //scrollbar
 ::-webkit-scrollbar {
+  border-radius:4px;
   width: 13px;
   height: 13px; }
 
-  ::-webkit-scrollbar:hover {
+::-webkit-scrollbar:hover {
     height: 18px; }
 
 ::-webkit-scrollbar-button:start:decrement,
@@ -224,3 +227,41 @@ button.create-list.btn:focus{
   border: 1px solid #0d0d0d;
   border-top: 1px solid #666666;
   border-left: 1px solid #666666; }
+
+div.title-holder{
+  position:relative;
+  display:block;
+  background:#fff;
+  width:80%;
+  margin-left:10%;
+  margin-top:30px;
+  border:1px solid black;
+}
+
+div.title-holder input.list-title{
+  color:black;
+}
+
+div.title-holder:after, div.title-holder:before {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+div.title-holder:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-top-color: #000;
+  border-width: 3px;
+  margin-left: -3px;
+}
+div.title-holder:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-top-color: #000;
+  border-width: 8px;
+  margin-left: -8px;
+}
