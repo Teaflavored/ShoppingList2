@@ -138,6 +138,14 @@ ShoppingList.Views.Main = Backbone.CompositeView.extend({
       this.$("#sidebar").append("<div class=\"lists-header\"></div>");
       this.$("#sidebar").append("<ul class=\"lists\"></ul>");
       this.$("#sidebar").append("<div class=\"new-list\"></div>");
+      debugger
+      setTimeout(function(){
+        this.$("ul.lists").mCustomScrollbar({
+          theme: "rounded"
+        });
+      }.bind(this), 0)
+
+
       this.attachSubviews();
     }.bind(this), 0)
     return this;

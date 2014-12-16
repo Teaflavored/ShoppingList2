@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require jquery.sidr.light
+ *= require jquery.mCustomScrollbar
  *= require_self
  */
 
@@ -18,7 +19,8 @@
  @import "bootstrap";
 
 html, body{
-  font-family: 'Raleway', sans-serif;;
+  font-family: 'Raleway', sans-serif;
+  background:#3697de;
   height:100%;
 }
 div#main{
@@ -27,7 +29,7 @@ div#main{
 }
 
 div.all-items-container{
-  background:#16a085;
+
   position:absolute;
   left:70px;
   top:0;
@@ -45,6 +47,14 @@ div.items-wrapper{
   width:100%;
   height:100%;
   position:relative;
+}
+
+div.items-wrapper div.items{
+  min-height:500px;
+  display:inline-block;
+  position:absolute;
+  left:20%;
+  right:20%;
 }
 
 div#mini-sidebar-menu{
@@ -120,6 +130,7 @@ input.lists-search.form-control{
 
 h1.sidebar-header{
   font-size:33px;
+  margin-bottom: 30px;
   margin:0;
 }
 
@@ -128,6 +139,16 @@ div#sidebar{
 }
 
 ul.lists{
-  height:60%;
-  overflow-y:scroll;
+  margin-bottom:5px;
+  height:400px;
+  overflow:auto;
+}
+div#sidebar.sidr.left ul.lists li div.list-item span{
+  color:#fff;
+}
+
+input.lists-search.form-control{
+  margin-top:20px;
+  margin-bottom:20px;
+  width:80%;
 }
