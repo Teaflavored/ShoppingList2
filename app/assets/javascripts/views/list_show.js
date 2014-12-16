@@ -1,6 +1,8 @@
 ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
   template: JST["list_show"],
 
+
+
   events: {
     "keyup input.phone-number": "updatePhoneNumber",
     "click button.send-text": "sendText"
@@ -11,7 +13,9 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
     this.newItemSelector = "div.new-item";
     this.toSendPhoneNumber = null;
     this._listOfItems = this._listOfItems || {};
+    //model is list, collection is the items
     this.listenTo(this.collection, "add", this.addView);
+    this.listenTo(this.collection, "remove", this.removeView);
     this.listenTo(this.model, "sync", this.listSyncActions);
 
     var newItemView = new ShoppingList.Views.NewItem({
@@ -31,6 +35,14 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
     })
 
     this.addSubview(this.itemSelector, itemView);
+  },
+
+  removeView: function(item){
+    _.each(this.subviews(this.itemSelector), function(view){
+      if (item.id === view.model.id){
+        this.removeSubview(this.itemSelector, view);
+      }
+    }.bind(this))
   },
 
   sendText: function(event){

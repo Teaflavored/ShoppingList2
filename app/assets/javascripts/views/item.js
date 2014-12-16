@@ -1,6 +1,21 @@
 ShoppingList.Views.Item = Backbone.CompositeView.extend({
   template: JST["single_item"],
 
+  events: {
+    "click button.remove-item": "removeItem"
+  },
+
+  removeItem: function(event){
+    var $button = $(event.currentTarget);
+    var listId = $button.data("list-id");
+    var list = ShoppingList.lists.get(listId);
+    this.model.destroy({
+      success: function(){
+        list.items().remove(this.model);
+      }.bind(this)
+    })
+  },
+
   initialize: function(){
     this.listenTo(this.model, "change:quantity", this.render);
   },

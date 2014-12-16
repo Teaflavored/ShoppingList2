@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :lists, only: [:index, :create, :show, :update]
     post "/texts", to: "texts#send_text"
-    resources :items, only: [:index, :create, :update]
+    resources :items, only: [:index, :create, :update, :destroy]
   end
 end
