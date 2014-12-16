@@ -21,6 +21,7 @@
 html, body{
   font-family: 'Raleway', sans-serif;
   background:#32425c;
+  overflow-y:scroll;
   height:100%;
 }
 div#main{
@@ -132,6 +133,7 @@ h1.sidebar-header{
   font-size:33px;
   margin-bottom: 30px;
   margin:0;
+  text-align:center;
 }
 
 div#sidebar{
@@ -141,8 +143,8 @@ div#sidebar{
 
 ul.lists{
   margin-bottom:5px;
-  min-height:300px;
-  max-height:400px;
+  min-height:100px;
+  height:50%;
   overflow-y: scroll;
 }
 div#sidebar{
@@ -155,6 +157,10 @@ div#sidebar.sidr.left ul.lists li div.list-item span{
   color:#fff;
 }
 
+div#sidebar.sidr.left ul.lists li div.list-item span:last-child{
+  margin-right:3px;
+}
+
 div#sidebar.sidr.left ul.lists li div.list-item span:first-child{
   font-size:1.2em;
 }
@@ -165,3 +171,56 @@ input.lists-search.form-control{
   margin-bottom:20px;
   width:80%;
 }
+
+div.new-list{
+  text-align:center;
+}
+
+button.create-list.btn{
+  margin-top:40px;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  display:inline;
+}
+
+button.create-list.btn:focus{
+  outline:none;
+}
+
+//scrollbar
+::-webkit-scrollbar {
+  width: 13px;
+  height: 13px; }
+
+  ::-webkit-scrollbar:hover {
+    height: 18px; }
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+  height: 15px;
+  width: 13px;
+  display: block;
+  background: #101211;
+  background-repeat: no-repeat; }
+
+
+::-webkit-scrollbar-button:vertical:decrement {
+  background:#fff;
+  border-radius:50%;
+  background-position: 3px 4px; }
+
+::-webkit-scrollbar-button:vertical:increment {
+  background: #fff;
+  border-radius:50%;
+  background-position: 3px 4px; }
+
+::-webkit-scrollbar-track-piece {
+  background-color: #151716; }
+
+::-webkit-scrollbar-thumb:vertical {
+  height: 50px;
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #4d4d4d), color-stop(100%, #333333));
+  border: 1px solid #0d0d0d;
+  border-top: 1px solid #666666;
+  border-left: 1px solid #666666; }
