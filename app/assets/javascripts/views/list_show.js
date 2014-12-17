@@ -34,6 +34,7 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
     })
 
     this.addSubview(this.itemSelector, itemView);
+
   },
 
   removeView: function(item){

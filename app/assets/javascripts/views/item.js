@@ -1,6 +1,8 @@
 ShoppingList.Views.Item = Backbone.CompositeView.extend({
   template: JST["single_item"],
 
+  className: "single-item",
+
   events: {
     "click button.remove-item": "removeItem"
   },

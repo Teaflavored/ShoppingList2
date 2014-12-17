@@ -268,3 +268,46 @@ div.title-holder:before {
 input.item-quant{
   width:40px;
 }
+
+div.all-items{
+  width:250px;
+  position:relative;
+  overflow:hidden;
+}
+
+div.single-item:first-child{
+  margin-top:10px;
+}
+
+div.single-item-wrapper{
+  position:relative;
+  background:#2ecc71;
+  margin-bottom:5px;
+  border-radius:5px;
+  width:200px;
+  height:40px;
+}
+
+div.single-item{
+  transition: all 1s ease;
+}
+
+div.single-item button.remove-item{
+  position:absolute;
+  width:30px;
+  height:30px;
+  right:5px;
+  top:5px
+}
+
+div.single-item button.remove-item div{
+  position:relative;
+  height:100%;
+  width:100%;
+}
+
+div.single-item button.remove-item div i{
+  position:absolute;
+  left:-7px;
+  bottom:-7px;
+}
