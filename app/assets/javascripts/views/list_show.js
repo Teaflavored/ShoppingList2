@@ -1,10 +1,9 @@
 ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
   template: JST["list_show"],
 
-
-
   events: {
     "keyup input.phone-number": "updatePhoneNumber",
+    "click button.delete-list": "deleteList",
     "click button.send-text": "sendText"
   },
 
@@ -43,6 +42,21 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
         this.removeSubview(this.itemSelector, view);
       }
     }.bind(this))
+  },
+
+  deleteList: function(event){
+    var $button = $(event.currentTarget);
+    var listId = $button.data("list-id");
+    var list = ShoppingList.lists.get(listId);
+
+    list.destroy({
+      success: function(){
+        ShoppingList.lists.remove(list);
+        ShoppingList.filteredLists.setList(ShoppingList.lists, "");
+        //remove the current view
+        this.remove();
+      }.bind(this)
+    })
   },
 
   sendText: function(event){

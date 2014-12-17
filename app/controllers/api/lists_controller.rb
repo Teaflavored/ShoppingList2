@@ -28,6 +28,12 @@ class Api::ListsController < ApplicationController
     render :show
   end
 
+  def destroy
+    @list = List.find(params[:id])
+    @list.destroy!
+    render :show
+  end
+
   private
 
   def list_params

@@ -12,7 +12,7 @@
 class List < ActiveRecord::Base
   validates :title, presence: true
 
-  has_many :items
+  has_many :items, dependent: :destroy
 
   def self.all_not_sent
     List.where("lists.sent IS FALSE");
