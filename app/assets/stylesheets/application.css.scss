@@ -235,14 +235,21 @@ div.title-holder{
   width:80%;
   margin-left:10%;
   margin-top:30px;
-  border:1px solid black;
+  height:0px;
+  transition:all 0.2s ease;
 }
 
 div.title-holder input.list-title{
   color:black;
+  height:100%;
+}
+
+input.list-title.closed{
+  display:none;
 }
 
 div.title-holder:after, div.title-holder:before {
+  display:none;
   top: 100%;
   left: 50%;
   border: solid transparent;
@@ -254,12 +261,14 @@ div.title-holder:after, div.title-holder:before {
 }
 
 div.title-holder:after {
+  display:none;
   border-color: rgba(136, 183, 213, 0);
   border-top-color: #000;
   border-width: 3px;
   margin-left: -3px;
 }
 div.title-holder:before {
+  display:none;
   border-color: rgba(194, 225, 245, 0);
   border-top-color: #000;
   border-width: 8px;

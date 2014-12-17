@@ -2,7 +2,7 @@ ShoppingList.Views.NewList = Backbone.CompositeView.extend({
   template: JST["new_list"],
 
   events: {
-    "click button.create-list": "createList",
+    "click button.create-list": "openUpField",
     "keyup input.list-title": "updateListParams"
   },
 
@@ -12,17 +12,40 @@ ShoppingList.Views.NewList = Backbone.CompositeView.extend({
 
   updateListParams: function(event){
     if (event.keyCode === 13){
-      this.createList(event);
+      this.createList();
     } else {
       var text = $(event.currentTarget).val();
       this._listParams["list"].title = text;
     }
   },
 
-  createList: function(event){
+  openUpField: function(event){
     event.preventDefault();
     //make an input appear
 
+    if (!this.$("div.title-holder input").hasClass("closed")){
+      this.$("div.title-holder").css({
+        "height": "0px"
+      });
+
+      this.$("div.title-holder").one("transitionend", function(){
+        this.$("div.title-holder").addClass("closed");
+        this.$("div.title-holder input").addClass("closed")
+      }.bind(this));
+    } else {
+      this.$("div.title-holder").css({
+        "height": "30px"
+      });
+
+      this.$("div.title-holder").one("transitionend", function(){
+        this.$("div.title-holder").removeClass("closed");
+        this.$("div.title-holder input").removeClass("closed");
+      }.bind(this));
+
+    }
+  },
+
+  createList: function(event){
 
     var $input = this.$("input.list-title");
     this.model = new ShoppingList.Models.List();
