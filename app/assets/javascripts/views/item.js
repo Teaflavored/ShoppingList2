@@ -4,7 +4,8 @@ ShoppingList.Views.Item = Backbone.CompositeView.extend({
   className: "single-item",
 
   events: {
-    "click button.remove-item": "removeItem"
+    "click button.remove-item": "removeItem",
+    "click": "toggleExpand"
   },
 
   removeItem: function(event){
@@ -16,6 +17,17 @@ ShoppingList.Views.Item = Backbone.CompositeView.extend({
         list.items().remove(this.model);
       }.bind(this)
     })
+  },
+
+  toggleExpand: function(){
+    var $itemBox = this.$("div.single-item-wrapper");
+    if ($itemBox.hasClass("long-item")){
+      $itemBox.removeClass("long-item");
+    } else {
+      $itemBox.addClass("long-item");
+      var siblings = this.$el.siblings();
+      siblings.find("div.single-item-wrapper").removeClass("long-item");
+    }
   },
 
   initialize: function(){

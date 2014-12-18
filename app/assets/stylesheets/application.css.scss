@@ -295,6 +295,7 @@ div.single-item-wrapper{
   border-radius:5px;
   width:200px;
   height:40px;
+  transition: height 1s ease;
 }
 
 div.single-item{
@@ -341,8 +342,8 @@ div.items-wrapper{
   margin-top:50px;
 }
 
-div.single-item-wrapper{
-
+div.single-item-wrapper.long-item{
+  height:240px;
 }
 
 div.single-item-wrapper div.item-info{
