@@ -21,10 +21,15 @@ ShoppingList.Views.Item = Backbone.CompositeView.extend({
 
   toggleExpand: function(){
     var $itemBox = this.$("div.single-item-wrapper");
+    var $itemDesc = this.$("p.item-info-name-long");
     if ($itemBox.hasClass("long-item")){
       $itemBox.removeClass("long-item");
+      $itemDesc.addClass("hidden-item");
     } else {
       $itemBox.addClass("long-item");
+      $itemBox.one("transitionend", function(){
+        $itemDesc.removeClass("hidden-item");
+      });
       var siblings = this.$el.siblings();
       siblings.find("div.single-item-wrapper").removeClass("long-item");
     }

@@ -343,7 +343,7 @@ div.items-wrapper{
 }
 
 div.single-item-wrapper.long-item{
-  height:240px;
+  height:150px;
 }
 
 div.single-item-wrapper div.item-info{
@@ -352,6 +352,28 @@ div.single-item-wrapper div.item-info{
   left:5px;
   top:7px;
   color:#000;
+}
+
+p.item-info-name-long{
+  display:block;
+}
+
+p.hidden-item.item-info-name-long{
+  display:none;
+}
+
+div.single-item-wrapper div.item-info span.item-info-name{
+  display:inline-block;
+  width: 95px;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+div.single-item-wrapper div.item-info span.item-info-quantity{
+  display:inline-block;
+  vertical-align:top;
+  white-space:nowrap;
 }
 
 button.delete-list{

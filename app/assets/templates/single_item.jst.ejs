@@ -1,6 +1,12 @@
 <div class="single-item-wrapper">
   <div class="item-info">
-    <%= item.get("name") %> x <%= item.get("quantity") %>
+    <span class="item-info-name">
+      <%= item.get("name") %>
+    </span>
+    <span class="item-info-quantity">
+      x <%= item.get("quantity") %>
+    </span>
+    <p class="hidden-item item-info-name-long">item Description: <%= item.get("name") %></p>
   </div>
   <button class="remove-item btn btn-default" data-list-id=<%= item.get("list_id") %>><div><i class="fa fa-times fa-2x"></div></i></button>
 </div>
