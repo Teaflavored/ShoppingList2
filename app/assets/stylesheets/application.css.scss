@@ -377,8 +377,16 @@ div.single-item-wrapper div.item-info span.item-info-quantity{
 }
 
 button.delete-list{
-  margin-top:5px;
-  vertical-align:top;
+  margin-top:-30px;
   background:#fff;
   color: #000;
+}
+
+div.items h1.list-show-title{
+  margin:0px;
+  width:250px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  display:inline-block;
 }
