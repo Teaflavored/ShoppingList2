@@ -4,7 +4,8 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
   events: {
     "keyup input.phone-number": "updatePhoneNumber",
     "click button.delete-list": "deleteList",
-    "click button.send-text": "sendText"
+    "click button.send-text": "sendText",
+    "mouseover h1.list-show-title": "showFullTitle"
   },
 
   initialize: function(){
@@ -35,6 +36,10 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
 
     this.addSubview(this.itemSelector, itemView);
 
+  },
+
+  showFullTitle: function(e){
+    //need to implement
   },
 
   removeView: function(item){
