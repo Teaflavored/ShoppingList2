@@ -35,11 +35,16 @@ ShoppingList.Views.ListShow = Backbone.CompositeView.extend({
     })
 
     this.addSubview(this.itemSelector, itemView);
-
   },
 
   showFullTitle: function(e){
-    //need to implement
+    var $listTitleHeader = this.$("h1.list-show-title");
+    $listTitleHeader.css("position", "relative");
+    $listTitleHeader.append($("<div class=\"info-box\" style=\"position:absolute; top:0px; z-index:3; background:#fff; color: #000;\">" + this.model.get("title") +"</div>"));
+    $("h1.list-show-title").on("mouseleave", function(){
+      var $box = $("div.info-box");
+      $box.remove();
+    })
   },
 
   removeView: function(item){
